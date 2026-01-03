@@ -1,0 +1,5 @@
+[user]
+	email = dr.wario@outlook.com
+	name = wario
+[pull]
+	rebase = true
