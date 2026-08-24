@@ -53,6 +53,7 @@ ln -sf "$DOTFILES_DIR/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"
 # mise
 mkdir -p "$HOME/.config/mise"
 ln -sf "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
+mise trust "$DOTFILES_DIR/mise/config.toml"
 
 echo "==> Installing mise tools..."
 mise install
