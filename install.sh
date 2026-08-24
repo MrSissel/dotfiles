@@ -27,6 +27,9 @@ brew install zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-s
 # Oh My Posh
 brew install oh-my-posh
 
+# mise (version manager)
+brew install mise
+
 echo "==> Linking dotfiles..."
 # zsh
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
@@ -46,6 +49,16 @@ ln -sf "$DOTFILES_DIR/oh-my-posh/catppuccin_macchiato.omp.json" "$HOME/.catppucc
 
 # aerospace
 ln -sf "$DOTFILES_DIR/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"
+
+# mise
+mkdir -p "$HOME/.config/mise"
+ln -sf "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
+
+echo "==> Installing mise tools..."
+mise install
+
+echo ""
+echo "==> Next: git clone git@github.com:MrSissel/myomp.git ~/.omp && ~/.omp/install.sh"
 
 echo ""
 echo "==> All done! Restart your terminal or source ~/.zshrc"
