@@ -17,6 +17,11 @@ link "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link "$DOTFILES_DIR/oh-my-posh/.catppuccin_macchiato.omp.json" "$HOME/.catppuccin_macchiato.omp.json"
 link "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
 
+# fish conf.d (committed twins)
+for f in "$DOTFILES_DIR"/fish/conf.d/*.fish; do
+  [ -f "$f" ] && link "$f" "$HOME/.config/fish/conf.d/$(basename "$f")"
+done
+
 # mise setup (skip if mise not installed yet)
 if command -v mise >/dev/null 2>&1; then
   mise trust "$DOTFILES_DIR/mise/config.toml"

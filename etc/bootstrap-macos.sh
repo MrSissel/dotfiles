@@ -8,3 +8,4 @@ brew install zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-s
 brew install oh-my-posh
 brew install mise
 brew install fzf zoxide eza bat
+brew install fish
