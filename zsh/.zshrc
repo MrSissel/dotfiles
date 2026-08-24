@@ -13,12 +13,6 @@ alias cli='/Applications/HBuilderX.app/Contents/MacOS/cli'
 # lazy-git
 alias lg='lazygit'
 
-# ruby Path
-# export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
-
 # Vscode Path
 # export PATH=$PATH:/usr/local/bin/code
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
@@ -44,7 +38,7 @@ export VOLTA_FEATURE_PNPM=1
 eval "$(oh-my-posh init zsh --config ~/.catppuccin_macchiato.omp.json)"
 
 # cargo
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # vi mode
 function zle-keymap-select {
@@ -68,11 +62,14 @@ bindkey "^?" backward-delete-char
 # export TERM=xterm-kitty
 
 # zsh plugins
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Program End
 
-. "$HOME/.local/bin/env"
+# . "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
+
+# Machine-local overrides (never committed)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
