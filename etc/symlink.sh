@@ -14,7 +14,7 @@ link "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
 link "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
 link "$DOTFILES_DIR/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 link "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
-link "$DOTFILES_DIR/oh-my-posh/catppuccin_macchiato.omp.json" "$HOME/.catppuccin_macchiato.omp.json"
+link "$DOTFILES_DIR/oh-my-posh/.catppuccin_macchiato.omp.json" "$HOME/.catppuccin_macchiato.omp.json"
 link "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
 
 # mise setup (skip if mise not installed yet)
