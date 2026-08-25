@@ -19,7 +19,9 @@ fi
 
 brew install --cask font-maple-mono-nf-cn
 brew install zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
-brew install oh-my-posh
+# --formula: the jandedobbeleer/oh-my-posh tap ships a same-named cask that
+# can shadow the core formula (and trip brew's tap-trust) if that tap exists
+brew install --formula oh-my-posh
 brew install mise
 brew install fzf zoxide eza bat
 brew install fish
