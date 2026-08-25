@@ -22,6 +22,11 @@ for f in "$DOTFILES_DIR"/fish/conf.d/*.fish; do
   [ -f "$f" ] && link "$f" "$HOME/.config/fish/conf.d/$(basename "$f")"
 done
 
+# bin scripts (login-shell shim + default-fish/default-zsh toggles)
+for f in "$DOTFILES_DIR"/bin/*; do
+  [ -f "$f" ] && link "$f" "$HOME/.local/bin/$(basename "$f")"
+done
+
 # mise setup (skip if mise not installed yet)
 if command -v mise >/dev/null 2>&1; then
   mise trust "$DOTFILES_DIR/mise/config.toml"

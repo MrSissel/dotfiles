@@ -1,0 +1,43 @@
+#!/bin/sh
+# login-shell — default-shell dispatcher (login shell shim).
+#
+# Registered once as the user's login shell (see etc/bootstrap-macos.sh).
+# Every app that spawns the login shell lands here; we read the last shell
+# chosen via default-fish / default-zsh and exec into it. After setup,
+# chsh never needs to be touched again.
+#
+# Fallback chain: state file -> zsh (ships with macOS) -> /bin/sh.
+# This script must never fail: a broken login shell locks out new sessions.
+
+STATE_FILE="${DEFAULT_SHELL_STATE_FILE:-$HOME/.config/default-shell/current}"
+
+# GUI-spawned login shells get a bare PATH (/usr/bin:/bin:...) before any
+# profile runs, so probe the usual install prefixes as well.
+find_shell() {
+  command -v "$1" 2>/dev/null && return 0
+  for dir in /opt/homebrew/bin /usr/local/bin /usr/bin /bin; do
+    if [ -x "$dir/$1" ]; then
+      echo "$dir/$1"
+      return 0
+    fi
+  done
+  return 1
+}
+
+target=""
+
+if [ -r "$STATE_FILE" ]; then
+  name=$(head -n 1 "$STATE_FILE" | tr -d '[:space:]')
+  case "$name" in
+    fish | zsh) target=$(find_shell "$name") ;;
+  esac
+fi
+
+[ -n "$target" ] || target=$(find_shell zsh)
+[ -n "$target" ] || target=/bin/sh
+
+# Tools detect the shell via $SHELL (tmux, editors, shell integrations);
+# point it at the real shell, not at this shim.
+export SHELL="$target"
+
+exec "$target" -l

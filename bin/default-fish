@@ -1,0 +1,28 @@
+#!/bin/sh
+# default-fish — make fish the default shell for all new sessions.
+#
+# Writes the state file read by the login-shell shim, refreshes the GUI
+# session SHELL (macOS), then replaces this process with fish so the
+# current session switches too.
+
+set -e
+
+path=$(command -v fish) || {
+  echo "default-fish: fish not found in PATH" >&2
+  exit 1
+}
+
+STATE_DIR="$HOME/.config/default-shell"
+mkdir -p "$STATE_DIR"
+echo fish > "$STATE_DIR/current"
+
+# Apps that read SHELL from the launchd environment (Electron apps like
+# Orca) only see this after their next launch.
+if command -v launchctl >/dev/null 2>&1; then
+  launchctl setenv SHELL "$path"
+fi
+
+echo "🐟 default shell -> fish ($path)"
+echo "   new sessions follow immediately; restart running GUI apps to pick it up"
+export SHELL="$path"
+exec "$path" -l
