@@ -14,3 +14,8 @@ fish_add_path "$HOME/.local/bin"
 
 alias cli '/Applications/HBuilderX.app/Contents/MacOS/cli'
 alias lg 'lazygit'
+
+# syntax highlighting: paint valid commands bright green, matching
+# zsh-syntax-highlighting's default. -g so an interactive `set -U` can
+# still override per-machine.
+set -g fish_color_command brgreen
