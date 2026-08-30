@@ -3,3 +3,5 @@
 	name = wario
 [pull]
 	rebase = true
+[include]
+	path = ~/.gitconfig.local
